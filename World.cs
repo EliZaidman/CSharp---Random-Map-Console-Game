@@ -9,6 +9,7 @@ namespace ConsoleGame
 {
     class World
     {
+        private Game Game;
         // Map top left and bottom right positions.
         public char[,] MapGrid { get; private set; }
         // All of the obstacles in the map.
@@ -90,7 +91,7 @@ namespace ConsoleGame
         {
             Random rnd = new Random();
 
-             foreach (GameObject gameObject in GameObjects)
+            foreach (GameObject gameObject in GameObjects)
             {
                 do
                 {
@@ -127,13 +128,13 @@ namespace ConsoleGame
             }
 
             // Chack if the grid is a walable tile.
-            return MapGrid[x, y] == '\0' || MapGrid[x, y] == 'X';
+            return MapGrid[x, y] == '\0' || MapGrid[x, y] == Game.CurrentExit.Icon;
         }
 
         public void DrawBox(int[,] BoxPoints)
         {
             for (int BorderX = BoxPoints[0, 0] + 1; BorderX < BoxPoints[1, 0] - 1; BorderX++)
-             {
+            {
                 MapGrid[BorderX, BoxPoints[0, 1]] = Symbols[0];
                 MapGrid[BorderX, BoxPoints[1, 1] - 1] = Symbols[0];
             }
